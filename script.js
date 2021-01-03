@@ -34,7 +34,7 @@ const book = aairlines.book;
 /*****************  Call method ********************/
 
 // let's try to tell JS explicity we want to point to the main object.
-book.call(southwest, 23, 'Steve'); // this keyword is set to southwest!!
+book.call(southwest, 89, 'Steve'); // this keyword is set to southwest!!
 console.log(southwest);
 
 /* Let's try to do it again  */
@@ -54,7 +54,7 @@ console.log(qatarairways);
 
 /*****************  Apply method ********************/
 
-// Aplpy method does not receive a list of arguments after this keyword!
+// Apply method does not receive a list of arguments after this keyword!
 // instead it takes an array of the arguments
 
 const flighData = [130, 'James'];
@@ -69,3 +69,38 @@ console.log(qatarairways);
 // book.call(qatarairways, ...flighData); //uncomment after checking above
 
 /*****************  Bind method ********************/
+
+//bind returns a new function where the this keyword is bound. it is set to the value is passed into bind.
+
+// book.call(southwest, 23, 'Steve'); // this keyword is set to southwest!!
+
+// lets add the book method to southwest what we did above
+const bookSW = book.bind(southwest); 
+console.log(bookSW);
+console.dir(bookSW);
+
+bookSW(55, 'Mike');
+console.log(bookSW);
+console.dir(bookSW);
+
+const bookQA = book.bind(qatarairways); // Easier to book
+const bookAA = book.bind(aairlines); // Easier to book now!
+bookQA(55, 'Mike');
+bookAA(55, 'Mike');
+
+console.dir(bookQA);
+console.dir(bookAA);
+
+/* We can also do more */
+console.log(southwest);
+
+const bookSW89 = book.bind(southwest, 89);
+
+bookSW89('Peter');
+
+console.log(southwest);
+console.dir(bookSW89);
+
+bookSW89('Anthony');
+
+console.log(southwest); // So much easier!!!!
